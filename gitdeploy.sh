@@ -146,7 +146,7 @@ remove(){
         rm /home/$user/service/$repo
         rm -rf /home/$user/etc/run-$repo
         rm -rf /var/www/virtual/$user/$repo.$domain/
-        rm -rf /home/$user/node/$repo
+        rm -rf /home/$user/node/$repo.$domain/
         rm -rf /home/$user/repositories/$repo.git/
 }
 errorParameter(){
