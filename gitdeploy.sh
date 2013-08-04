@@ -1,6 +1,6 @@
 #!/bin/sh
 ############################
-# Uberspace Gitdeploy V0.2 ###
+# Uberspace Gitdeploy V0.2.2 ###
 ##################################
 #                               #####
 #       2013-08-03              ##########
@@ -71,7 +71,6 @@ addGitFiles(){
 }
 newWebPostHook(){
         mkdir /var/www/virtual/$user/$repo.$domain/
-
         cd /home/$user/repositories/$repo.git/hooks/
         echo #!/bin/sh >> post-receive
         echo unset GIT_INDEX_FILE >> post-receive
@@ -109,7 +108,7 @@ newNodePostHook(){
                 freePortSearch
                 cd "/var/www/virtual/$user/$repo.$domain/"
                 echo RewriteEngine On >> .htaccess
-                echo "RewriteRule ^(.*) http://localhost:$freeport/$1 [P]"  >> .htaccess
+                echo 'RewriteRule ^(.*)$ http://localhost:$freeport/$1 [P]'  >> .htaccess
                 nodeScript
         }
 
@@ -161,19 +160,19 @@ errorParameter(){
 case $option in
         local)
                 newGitRepo
-                endinfo
+                endInfo
         ;;
         node)
                 newGitRepo
                 newNodePostHook
                 addNodeService
                 addGitFiles
-                endinfo
+                endInfo
         ;;
         web)
                 newGitRepo
                 newWebPostHook
-                endinfo
+                endInfo
         ;;
         freeport)
                 freePortSearch
